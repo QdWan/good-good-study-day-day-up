@@ -31,24 +31,22 @@ salesOffices.trigger = function () {
    * shift 方法并不局限于数组：这个方法能够通过 call 或 apply 方法作用于类似数组的对象上。但是对于没有 length 属性（从0开始的一系列连续的数字属性的最后一个）的对象，调用该方法可能没有任何意义。
    */
 
-
   const key = Array.prototype.shift.call(arguments);
 
+  const fns = this.clientList[key]
 
   try {
-    if (!this.clientList[key]) {
+    if (!fns) {
       throw new Error('没有该类型订阅者')
     }
   } catch (e) {
-    console.log(e);
+    console.log(e)
   }
-
-  const fns = this.clientList[key]
 
   // 如果消息队列为空 就不执行了
   if (!fns.length) return
 
-  for (let index = 0; index < this.clientList[key].length; index++) {
+  for (let index = 0; index < fns.length; index++) {
     // 通过apply将参数传给执行函数
     const fn = fns[index]
     fn.apply(this, arguments);
