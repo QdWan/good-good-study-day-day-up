@@ -116,7 +116,6 @@ myobject.increment()
 myobject.increment()
 myobject.increment()
 myobject.getValue()
-3
 
 
 // 递归
@@ -186,4 +185,50 @@ const superhanoi = function(src, temp, target) {
 }
 superhanoi([1,2,3,4,5,6,7,8,9], [], [])
 
+// 柯里化
+Function.prototype.curry = function() {
+  // 跟数组老哥借个方法 来把伪数组变成真数组
+  var args = Array.prototype.slice.apply(arguments)
+  var that = this
+  return function() {
+    return that.apply(null, args.concat(Array.prototype.slice.apply(arguments)))
+  }
+}
 
+var add1 = add.curry(1)
+console.log(add1(7));
+
+
+// 级联 通过级联降低接口耦合
+var math = {
+  add: function(a, b) {
+    console.log(a+b);
+    return this
+  },
+  sub: function (a, b) {
+    console.log(a - b);
+    return this
+  }
+}
+
+math.add(1, 2).sub(3, 1)
+
+
+// 斐波那契数列
+// 通过递归将问题分解 然后变成 小问题+小问题
+
+const fibonacci = function(n) {
+  if (n < 2) {
+    return n
+  } else {
+    return fibonacci(n - 1) + fibonacci(n - 2)
+  }
+}
+
+const factorial = function(n) {
+  if (n < 3) {
+    return n
+  } else {
+    return n * factorial(n - 1)
+  }
+}
