@@ -13,4 +13,3 @@ const Fnobj = function() {
 const newObj = new Fnobj()
 
 console.log(newObj.age);
-
