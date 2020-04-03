@@ -54,3 +54,12 @@ console.log(2)
 // 4
 
 
+
+let j = () => {
+  return 2
+}
+new Promise((resolve, reject) => {
+  resolve(1)
+}).then(j).then(req => {
+  console.log('---------', req);    //2
+})
