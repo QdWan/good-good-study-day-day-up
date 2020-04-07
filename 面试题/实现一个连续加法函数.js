@@ -15,4 +15,3 @@ function add(...num) {
 
 const total = add(1)(2, 3)(4).value()
 console.log(total);
-
