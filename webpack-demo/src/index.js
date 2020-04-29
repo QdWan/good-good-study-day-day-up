@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import './style.css'
-import spiderman from './spiderman.jpg'
+// import spiderman from './spiderman.jpg'
+import printMe from './print'
 
 function component() {
   var element = document.createElement('div');
@@ -9,11 +10,16 @@ function component() {
   element.innerHTML = _.join(['Hello', 'webpack'], ' ');
   element.classList.add('hello')
 
-  // 将图像添加到我们现有的 div。
-  var img = new Image();
-  img.src = spiderman;
+  // // 将图像添加到我们现有的 div。
+  // var img = new Image();
+  // img.src = spiderman;
 
-  element.appendChild(img);
+  // element.appendChild(img);
+
+  var btn = document.createElement('button');
+  btn.innerHTML = 'Click me and check the console!';
+  btn.onclick = printMe;
+  element.appendChild(btn);
 
   return element;
 }
