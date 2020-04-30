@@ -15,6 +15,9 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({ title: "production" }),
+    new webpack.ProvidePlugin({
+      join: ['lodash', 'join']
+    })
   ],
   optimization: {
     splitChunks: {
@@ -36,7 +39,7 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: ['file-loader']
-      }
+      },
     ]
   }
 };
